@@ -1,59 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
 import React, {useState} from 'react';
+import emojidata from './emojidata';
 
-
-//using object as an array 
-var emojiData ={
-  "😀" : "smilling",
-  "😞" : "sad",
-  "😰" : "cold",
-  "🤣" : "lol",
-  "🤑" : "greddy",
-  
-}
-//for showing emoji
-var emojiWeKnow=Object.keys(emojiData);
+var emojiWeKnow=Object.keys(emojidata);
 function App() {
-  // using use state 
-  //usestate :- meaning is a curret value and setmeaning is used for updating the new value
-  var [meaning,setmeaning]=useState("")
-  
-   function ontapHandler(event){
-      //targeting the writen value 
-     var userInput =event.target.value;
-    var meaning =emojiData[userInput]
-   setmeaning(meaning);
-   }
-   function emojiClick(emoji){
-     var meaning=emojiData[emoji]
+ 
+  const [meaning,setmeaning]=useState()
+     function emojiClick(emoji){
+      console.log(emoji);
+     var meaning=emojidata[emoji]
+      console.log(emojidata[emoji]);
      setmeaning(meaning);
    }
+   
+   const  emojiElements=emojiWeKnow.map(emoji=>{
+  return (
+        <span key={emoji}className="emojirender"onClick={()=>emojiClick(emoji)}> {emoji} </span>
+        
+      )
+   }
+  )
+
+
   return (
     <div className="App">
       <h1>Your mode</h1>
-      <input onChange={ontapHandler}/>
-     
-      <h2>Select your mood</h2>
-      {/* map is used as loop with */}
-      {emojiWeKnow.map(function (emoji) {
-        return (
-          <span
-          onClick={()=>emojiClick(emoji)}
-          style={
-            {
-              fontSize:"5rem",
-              padding:"0.5rem",
-              cursor:"pointer"
-            }}
-          >
-            {emoji}
-          </span>
-        )
-      })}
+       <h2>Select your mood</h2>
+       {emojiElements}
       <h2>your mood is : {meaning}</h2>
     </div>
-  );
+  )
 }
 
 export default App;

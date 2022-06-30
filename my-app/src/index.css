@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.emojirender{
+  font-size:5rem;
+  padding: 0.5rem;
+  cursor:pointer
+}
